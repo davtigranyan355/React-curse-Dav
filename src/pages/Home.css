@@ -1,0 +1,84 @@
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .header {
+        background: var(--card-background);
+        padding: 20px;
+        text-align: center;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+    .nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        padding: 10px;
+    }
+
+    .hero {
+        background: var(--card-background);
+        padding: 50px;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .hero img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .articles {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px 0;
+
+    }
+
+    .article-card {
+        background: var(--card-background);
+        padding: 15px;
+        border-radius: 10px;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        border: 1px solid var(--border-color);
+    }
+
+    .article-card img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .footer {
+        background: var(--card-background);
+        padding: 20px;
+        text-align: center;
+    }
+
+    .go-austialia {
+        color: aqua;
+    }
+
+    .go-austialia:hover {
+        text-decoration: underline;
+    }
