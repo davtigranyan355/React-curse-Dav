@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth/AuthContext";
 import Container from '@mui/material/Container';
 import { Navbar } from "./Navbar";
 import LogoutIcon from '../assets/logout.svg';
+import { Box } from "@mui/material";
 
 
 
@@ -16,9 +17,9 @@ export const MainLayout = () => {
         <Container id="main-layout" disableGutters={true}>
             <Navbar />
 
-            <div className="content">
+            <Box className="content" sx={{ marginTop: '90px' }}>
                 <Outlet />
-            </div>
+            </Box>
         </Container>
     );
 };

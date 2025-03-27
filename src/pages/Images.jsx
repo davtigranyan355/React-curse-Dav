@@ -13,23 +13,25 @@ export const Images = () => {
     };
 
     return (
-        <section className="start">
-            <Typography variant="h3"
-            >This is Images Page</Typography>
+        <div>
+            <section className="start">
+                <Typography variant="h3"
+                >This is Images Page</Typography>
 
-            <div className="images">
+                <div className="images">
 
-                {images.map((image) => (
-                    <img
-                        className="img"
-                        onClick={
-                            () => handleImageView(image)
-                        }
-                        src={image.src}
-                        alt="Test"
-                    />
-                ))}
-            </div>
-        </section>
+                    {images.map((image) => (
+                        <img
+                            className="img"
+                            onClick={
+                                () => handleImageView(image)
+                            }
+                            src={image.src}
+                            alt="Test"
+                        />
+                    ))}
+                </div>
+            </section>
+        </div>
     );
 };
