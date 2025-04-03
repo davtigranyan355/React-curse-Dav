@@ -24,8 +24,8 @@ const pages = [
     { text: 'Home', link: '/' },
     { text: 'Shorts', link: '/images' },
     { text: 'Subscribtions', link: '/subscriptions' },
-    { text: 'Prodacts', link: '/prodacts' },
-    { text: 'User', link: '/user' },
+    { text: 'Prodacts', link: '/products' },
+    { text: 'Users', link: '/users' },
     // { text: 'Contact', link: '/contact' }
 ];
 
@@ -40,10 +40,10 @@ export function Navbar() {
 
 
     const handlePageChange = (link) => {
+        console.log({ link });
 
         navigate(link);
     };
-
 
 
     return (
@@ -53,9 +53,9 @@ export function Navbar() {
                     <CodeIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }} />
                     <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'space-between' }}>
                         <Box sx={{ display: 'flex' }}>
-                            {pages.map((page) => (
+                            {pages.map((page, key) => (
                                 <Button
-                                    key={page.text}
+                                    key={key}
                                     onClick={() => handlePageChange(page.link)}
                                     sx={{ my: 2, color: 'white', display: 'block' }}
                                 >

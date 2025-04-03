@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react"
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Rating } from "@mui/material";
-
-
+import { useParams } from "react-router-dom";
+import { ProductDetail } from "./ProductDetail";
+import { useNavigate } from "react-router-dom";
 
 export const Products = () => {
     const [products, setProdacts] = useState([]);
 
+    const navigate = useNavigate();
+
+    const params = useParams();
+
+    const [isDetailsOpend, setisDetailsOpend] = useState(false);
 
     useEffect(() => {
         fetch('https://dummyjson.com/products')
@@ -14,12 +20,25 @@ export const Products = () => {
                 setProdacts(productsReponse.products)
             });
     }, []);
-    console.log(products)
+    const handleDetailsOpen = (productId) => {
+        setisDetailsOpend(true);
+        navigate(`/products/${productId}`)
+    };
+
+    const handleDetailsclose = () => {
+        setisDetailsOpend(false);
+        navigate(`/products`)
+    };
+
+
     return (
+
         <div>
-            <div >
-                products
-            </div>
+            <h1 align='center'>
+
+                <div>
+                    PRODUCTS
+                </div></h1>
             <TableContainer component={Paper} >
                 <Table sx={{ minWidth: 650 }}>
                     <TableHead>
@@ -34,6 +53,7 @@ export const Products = () => {
                     <TableBody>
                         {products.map((product) => (
                             <TableRow
+                                onClick={() => handleDetailsOpen(product.id)}
                                 key={product.id}
                                 sx={{
                                     '&:last-child td, &:last-child th': {
@@ -46,14 +66,22 @@ export const Products = () => {
                                 </TableCell>
                                 <TableCell align="center">{product.title}</TableCell>
                                 <TableCell align="center">{product.sku}</TableCell>
-                                <Rating value={product.rating} />
+
                                 <TableCell align="center">{product.stock}</TableCell>
                                 <TableCell align="center">{product.routing}</TableCell>
                             </TableRow>
                         ))}
+                        <h1 align='center'>
+
+                        </h1>
                     </TableBody>
                 </Table>
             </TableContainer>
+            <ProductDetail
+                productId={params.productId}
+                open={isDetailsOpend}
+                onClose={handleDetailsclose}
+            />
         </div >
     )
 }

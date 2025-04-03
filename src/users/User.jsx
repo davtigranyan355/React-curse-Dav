@@ -1,12 +1,16 @@
-import { React, useEffect, useContext, useState, } from "react";
-import { AuthContext } from "../context/auth/AuthContext";
+import { useEffect, useState, } from "react";
 import { TableContainer, TableCell, TableHead, TableRow, Table, TableBody, Paper, Rating } from "@mui/material";
+import { UsersDetail } from "./UsersDerail";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const User = () => {
     const [users, setUsers] = useState([]);
 
-    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
+    const params = useParams();
+
+    const [isDetailsOpend, setisDetailsOpend] = useState(false);
 
     useEffect(() => {
         fetch('https://dummyjson.com/users')
@@ -15,11 +19,20 @@ export const User = () => {
                 setUsers(usersReponse.users)
             });
     }, []);
+    const handleDetailsOpen = (userId) => {
+        setisDetailsOpend(true);
+        navigate(`/users/${userId}`)
+    };
+
+    const handleDetailsclose = () => {
+        setisDetailsOpend(false);
+        navigate(`/users`)
+    };
 
     return (
         <div>
             <div >
-                User
+                USERS
             </div>
             <TableContainer component={Paper} >
                 <Table sx={{ minWidth: 650 }}>
@@ -36,6 +49,7 @@ export const User = () => {
                     <TableBody>
                         {users.map((user) => (
                             <TableRow
+                                onClick={() => handleDetailsOpen(user.Id)}
                                 key={user.id}
                                 sx={{
                                     '&:last-child td, &:last-child th': {
@@ -56,6 +70,14 @@ export const User = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+
+            {params.userId && (
+                <UsersDetail
+                    userId={params.userId}
+                    open={isDetailsOpend}
+                    onClose={handleDetailsclose}
+                />
+            )}
         </div>
     );
 }
