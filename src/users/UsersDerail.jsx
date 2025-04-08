@@ -51,11 +51,12 @@ export const UsersDetail = (props) => {
                         ) : user?.id && (
                             <>
                                 <UserBasicInfo data={{
-                                    address: user.address,
+                                    firstName: user.firstName,
                                     image: user.image,
                                     lastName: user.lastName,
                                     phone: user.phone,
                                 }} />
+                                <Typography sx={{ fontSize: '11px', padding: '1px 20px' }}>Reviews</Typography>
                             </>
                         )}
                 </Box>

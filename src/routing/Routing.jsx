@@ -28,8 +28,8 @@ export const Routing = () => {
                         <Route path='/images' element={<Images />} />
                         <Route path='/images/:imageId' element={<ImageDetail />} />
                         <Route path='/subscriptions' element={<Subscriptions />} />
-                        {/* <Route path='/products?/:productId' element={<Products />} /> */}
-                        <Route path='/users?/:userId' element={<User />} />
+                        <Route path='/products/:productId?' element={<Products />} />
+                        <Route path='/users/:userId?' element={<User />} />
                         <Route path='/Contact' element={<Contact />} />
                     </Route>
                 </Route>

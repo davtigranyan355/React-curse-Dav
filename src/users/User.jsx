@@ -1,10 +1,17 @@
 import { useEffect, useState, } from "react";
 import { TableContainer, TableCell, TableHead, TableRow, Table, TableBody, Paper, Rating } from "@mui/material";
 import { UsersDetail } from "./UsersDerail";
+import { useSelector, useDispatch } from "react-redux";
+import { usersAcrions } from '../store/slice/usersSlice';
 import { useNavigate, useParams } from "react-router-dom";
 
 export const User = () => {
-    const [users, setUsers] = useState([]);
+
+    const { users } = useSelector((store) => store.users);
+    console.log({ users });
+
+    const dispuch = useDispatch();
+
 
     const navigate = useNavigate();
 
@@ -16,7 +23,7 @@ export const User = () => {
         fetch('https://dummyjson.com/users')
             .then(res => res.json())
             .then((usersReponse) => {
-                setUsers(usersReponse.users)
+                dispuch(usersAcrions.addUsers(usersReponse.users));
             });
     }, []);
     const handleDetailsOpen = (userId) => {
@@ -49,7 +56,7 @@ export const User = () => {
                     <TableBody>
                         {users.map((user) => (
                             <TableRow
-                                onClick={() => handleDetailsOpen(user.Id)}
+                                onClick={() => handleDetailsOpen(user.id)}
                                 key={user.id}
                                 sx={{
                                     '&:last-child td, &:last-child th': {
